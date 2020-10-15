@@ -42,9 +42,15 @@ function setTime() {
     timerEl.textContent = "Time remaining: " + secondsLeft;
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
-      // sendMessage();
+      timesUp();
     }
   }, 1000);
+}
+
+function timesUp () {
+    timerEl.textContent = "Time's Up!!"
+    startButton.textContent = "Restart";
+    startButton.classList.remove('hide');
 }
 
 function setNextQuestion (){
@@ -114,10 +120,10 @@ const questions = [
     {
         question: "What is the HTML tag under which one can write the JavaScript code?",
         answers: [
-          { text: "<script>", correct: true},
-          { text: "<javascript>", correct: false},
-          { text: "<scripted>", correct: false},
-          { text: "<js>", correct: false},
+            {text: "<script>", correct: true},
+            {text: "<javascript>", correct: false},
+            {text: "<scripted>", correct: false},
+            {text: "<js>", correct: false},
         ]
     },
     {

@@ -39,3 +39,10 @@ body {
 .hide {
   display: none;
 }
+
+/* NOT WORKING - WHYYYYYY */
+/* .score-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+} */
