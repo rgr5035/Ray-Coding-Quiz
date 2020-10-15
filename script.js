@@ -3,6 +3,7 @@ const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const timerEl = document.getElementById('timer');
 const questionContainerEl = document.getElementById('questions-container');
+const header1 = document.querySelector('h1');
 const questionEl = document.getElementById('question');
 const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
@@ -26,7 +27,7 @@ nextButton.addEventListener('click', () => {
 //declaring the variable of score that will increment as the user gains correct answers
 let score = 0;
 
-var secondsLeft = 100;
+var secondsLeft = 10;
 
 
 //NEED NOTES
@@ -36,6 +37,7 @@ function startGame () {
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
+    header1.classList.add('hide');
     score = 0;
     setNextQuestion();
     setTime();
@@ -59,6 +61,8 @@ function timesUp () {
     startButton.textContent = "Restart";
     startButton.classList.remove('hide');
     highScoreEl.classList.remove('hide');
+    header1.classList.remove('hide');
+    header1.textContent = "Try Again?";
 }
 
 
@@ -107,6 +111,8 @@ function selectAnswer(e) {
         startButton.textContent = "Restart";
         startButton.classList.remove('hide');
         highScoreEl.classList.remove('hide');
+        header1.classList.remove('hide');
+        header1.textContent = "Try Again?";
     } if (selectedButton.dataset = correct) {
         score++;
     } 
@@ -131,6 +137,7 @@ function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
+
 
 
 //NEED NOTES
