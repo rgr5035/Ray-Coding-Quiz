@@ -29,7 +29,17 @@ function setNextQuestion (){
 }
 
 function showQuestion(question) {
-    questionEl.innerText = question.question
+    questionEl.textContent = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.textContent = answer.text;
+        button.classList.add('btn');
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsEl.appendChild(button);
+    })
 }
 
 function selectAnswer () {

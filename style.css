@@ -20,6 +20,11 @@ body {
   padding: 30px;
   margin-bottom: 30px;
 }
+
+.button-rows {
+  display: grid;
+}
+
 .controls {
   margin-top: 30px;
   display: flex;
