@@ -18,6 +18,15 @@ body {
 
 .button-rows {
   display: grid;
+  gap: 10px;
+}
+
+.btn.correct {
+  background-color: rgb(66, 202, 123);
+}
+
+.btn.wrong {
+  background-color: rgb(216, 67, 67);
 }
 
 .controls {

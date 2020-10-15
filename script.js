@@ -5,6 +5,7 @@ const timerEl = document.getElementById('timer');
 const questionContainerEl = document.getElementById('questions-container');
 const questionEl = document.getElementById("question");
 const answerButtonsEl = document.getElementById("answer-buttons");
+const showScore = document.getElementById('score');
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -18,9 +19,9 @@ nextButton.addEventListener('click', () => {
 
 
 //declaring the variable of score that will increment as the user gains correct answers
-var score = 0;
+let score = 0;
 
-var secondsLeft = 600;
+var secondsLeft = 100;
 
 
 function startGame () {
@@ -29,20 +30,22 @@ function startGame () {
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
+    score = 0;
     setNextQuestion();
     setTime();
 }
 
 //TIMER FUNCTION
-// function setTime() {
-//   var timerInterval = setInterval(function () {
-//     secondsLeft--;
-//     timerEl.textContent = "Time remaining: " + secondsLeft;
-//     if (secondsLeft === 0) {
-//       clearInterval(timerInterval);
-//       // sendMessage();
-//     }
-//   }, 1000);
+function setTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timerEl.textContent = "Time remaining: " + secondsLeft;
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      // sendMessage();
+    }
+  }, 1000);
+}
 
 function setNextQuestion (){
     resetState()
@@ -84,16 +87,21 @@ function selectAnswer(e) {
     } else {
         startButton.textContent = "Restart";
         startButton.classList.remove('hide');
-    }
-    
+    } if (selectedButton.dataset = correct) {
+        score++;
+    } 
+    showScore.textContent = "Your Score: " + score + "/10";
 }
 
+
+//CAN ADD STYLING TO CSS TO GENERATE COLORS IN BUTTONS IF CORRECT OR WRONG, CONSIDER ADDING TO CSS TO GENERATE
 function setStatusclass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
     } else {
         element.classList.add('wrong');
+        secondsLeft-- * 10;
     }
 }
 
