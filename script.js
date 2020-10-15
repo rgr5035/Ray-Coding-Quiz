@@ -1,6 +1,7 @@
 //VARIABLE DECLARATION
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
+const timerEl = document.getElementById('timer');
 const questionContainerEl = document.getElementById('questions-container');
 const questionEl = document.getElementById("question");
 const answerButtonsEl = document.getElementById("answer-buttons");
@@ -8,13 +9,18 @@ const answerButtonsEl = document.getElementById("answer-buttons");
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame);
-nextButton.addEventListener('click', )
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion();
+})
 
 //declaring the variable that stores in global memory the various quiz questions
 
 
 //declaring the variable of score that will increment as the user gains correct answers
 var score = 0;
+
+var secondsLeft = 600;
 
 
 function startGame () {
@@ -23,8 +29,20 @@ function startGame () {
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
-    setNextQuestion()
+    setNextQuestion();
+    setTime();
 }
+
+//TIMER FUNCTION
+// function setTime() {
+//   var timerInterval = setInterval(function () {
+//     secondsLeft--;
+//     timerEl.textContent = "Time remaining: " + secondsLeft;
+//     if (secondsLeft === 0) {
+//       clearInterval(timerInterval);
+//       // sendMessage();
+//     }
+//   }, 1000);
 
 function setNextQuestion (){
     resetState()
@@ -51,12 +69,37 @@ function resetState() {
     while (answerButtonsEl.firstChild) {
         answerButtonsEl.removeChild(answerButtonsEl.firstChild);
     }
-
 }
 
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
+    setStatusclass(document.body, correct);
+    Array.from(answerButtonsEl.children).forEach(button => {
+        setStatusclass(button, button.dataset.correct);
+    })
+
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide');
+    } else {
+        startButton.textContent = "Restart";
+        startButton.classList.remove('hide');
+    }
+    
+}
+
+function setStatusclass(element, correct) {
+    clearStatusClass(element);
+    if (correct) {
+        element.classList.add('correct');
+    } else {
+        element.classList.add('wrong');
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
 }
 
 const questions = [
@@ -88,31 +131,63 @@ const questions = [
         ]
     },
     {
-        prompt: "Which of the following is the correct syntax to display 'Coding is fun!' in an alert box using JavaScript?\n(a) confirm('Coding is Fun!')\n(b) msg('Coding is Fun!)\n(c) prompt('Coding is Fun!')\n(d) alert('Coding is Fun!)",
-        answer: "d"  
+        question: "Which of the following is the correct syntax to display 'Coding is fun!' in an alert box using JavaScript?",
+        answers: [
+            {text: "confirm('Coding is Fun!')", correct: false},
+            {text: "alert('Coding is Fun!)", correct: true},
+            {text: "msg('Coding is Fun!)", correct: false},
+            {text: "prompt('Coding is Fun!')", correct: false},
+        ]
     },
     {
-        prompt: "What is the correct syntax for referring to an external script called 'geek.js'?\n(a) <script src='geek.js'>\n(b) <script href='geek.js'\n(c) <script ref='geek.js'>\n(d) <script name='geek.js'>",
-        answer: "a"
+        question: "What is the correct syntax for referring to an external script called 'script.js'?",
+        answers: [
+            {text:"<script src='script.js'></script>", correct: true},
+            {text: "<script href='script.js'></script>", correct: false},
+            {text: "<script ref='script.js'></script>", correct: false},
+            {text: "<script name='script.js'></script>", correct: false},
+        ]
     },
     {
-        prompt: "What does HTML stand for?\n(a) Hyperlinks and Text Markup Language\n(b) Home Tool Markup Language\n(c) Hyper Text Markup Language",
-        answer: "c"
+        question: "What does HTML stand for?",
+        answers: [
+            {text: "Hyperlinks and Text Markup Language", correct: false},
+            {text: "Home Tool Markup Language", correct: false},
+            {text: "Hyper Text Markup Language", correct: true},
+            ]
     },
     {
-        prompt: "Where in an HTML document is the correct place to refer to an external style sheet?\n(a) The <head> section\n(b) At the end of the document\n(c) The <body> section",
-        answer: "a"
+        question: "Where in an HTML document is the correct place to refer to an external style sheet?",
+        answers: [
+            {text: "The <head> section", correct: true},
+            {text: "At the end of the document", correct: false},
+            {text: "The <body> section", correct: false},
+        ]
     },
     {
-        prompt: "The external JavaScript file must contain <script> tag. True or False?\n(a) True\n(b) False",
-        answer: "b"
+        question: "The external JavaScript file must contain <script> tag. True or False?",
+        answers: [
+            {text: "True", correct: false},
+            {text: "False", correct: true},
+        ]
+         
     },
     {
-        prompt: "Which is the correct CSS syntax?\n(a) {body;color;black;}\n(b) body:color=black\n(c) body {color;black}\n(d) {body:color=black}",
-        answer: "c"
+        question: "Which is the correct CSS syntax?",
+        answers: [
+            {text: "{body;color;black;}", correct: false},
+            {text: "body:color=black", correct: false},
+            {text: "body {color;black}", correct: true},
+            {text: "{body:color=black}", correct: false},
+        ]
     },
     {
-        prompt: "How can you make a bulleted list?\n(a) <dl>\n(b) <list>\n(c) <ol>\n(d) <ul>",
-        answer: "d"
+        question: "How can you make a bulleted list?",
+        answers: [
+            {text: "<dl>", correct: false},
+            {text: "<list>", correct: false},
+            {text: "<ol>", correct: false},
+            {text: "<ul>", correct: true},
+        ]
     },
 ]
