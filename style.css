@@ -2,6 +2,10 @@ body {
   font-family: "Righteous", cursive;
 }
 
+.container {
+  text-align: center;
+}
+
 .btn.correct {
 }
 
