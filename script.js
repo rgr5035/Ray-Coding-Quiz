@@ -8,8 +8,12 @@ const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
 const highScoreEl = document.getElementById('high-score-buttons')
 
+
+//NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
 
+
+//NEED NOTES
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
@@ -22,9 +26,10 @@ nextButton.addEventListener('click', () => {
 //declaring the variable of score that will increment as the user gains correct answers
 let score = 0;
 
-var secondsLeft = 10;
+var secondsLeft = 100;
 
 
+//NEED NOTES
 function startGame () {
     console.log('started');
     startButton.classList.add('hide'); //THIS DIDNT WORK
@@ -48,6 +53,7 @@ function setTime() {
   }, 1000);
 }
 
+//NEED NOTES
 function timesUp () {
     timerEl.textContent = "Time's Up!!"
     startButton.textContent = "Restart";
@@ -55,11 +61,14 @@ function timesUp () {
     highScoreEl.classList.remove('hide');
 }
 
+
+//NEED NOTES
 function setNextQuestion (){
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
+//NEED NOTES
 function showQuestion(question) {
     questionEl.textContent = question.question
     question.answers.forEach(answer => {
@@ -82,6 +91,8 @@ function resetState() {
     }
 }
 
+
+//NEED NOTES
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -114,11 +125,15 @@ function setStatusclass(element, correct) {
     }
 }
 
+
+//NEED NOTES
 function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
 
+
+//NEED NOTES
 const questions = [
     {
         question: "What is the HTML tag under which one can write the JavaScript code?",
