@@ -3,9 +3,10 @@ const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const timerEl = document.getElementById('timer');
 const questionContainerEl = document.getElementById('questions-container');
-const questionEl = document.getElementById("question");
-const answerButtonsEl = document.getElementById("answer-buttons");
+const questionEl = document.getElementById('question');
+const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
+const highScoreEl = document.getElementById('high-score-buttons')
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -21,7 +22,7 @@ nextButton.addEventListener('click', () => {
 //declaring the variable of score that will increment as the user gains correct answers
 let score = 0;
 
-var secondsLeft = 100;
+var secondsLeft = 10;
 
 
 function startGame () {
@@ -51,6 +52,7 @@ function timesUp () {
     timerEl.textContent = "Time's Up!!"
     startButton.textContent = "Restart";
     startButton.classList.remove('hide');
+    highScoreEl.classList.remove('hide');
 }
 
 function setNextQuestion (){
@@ -93,6 +95,7 @@ function selectAnswer(e) {
     } else {
         startButton.textContent = "Restart";
         startButton.classList.remove('hide');
+        highScoreEl.classList.remove('hide');
     } if (selectedButton.dataset = correct) {
         score++;
     } 

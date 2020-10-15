@@ -36,6 +36,14 @@ body {
   align-items: center;
 }
 
+/*NOT WORKING - WHY 
+/* .high-score-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 .hide {
   display: none;
 }
