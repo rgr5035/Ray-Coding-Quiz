@@ -1,5 +1,10 @@
 body {
   font-family: "Righteous", cursive;
+  background-color: rgb(52, 138, 138);
+}
+
+h1 {
+  margin-top: 30px;
 }
 
 .container {
@@ -37,7 +42,7 @@ body {
 }
 
 /*NOT WORKING - WHY 
-/* .high-score-buttons {
+.score-card {
   margin-top: 30px;
   display: flex;
   justify-content: center;
@@ -49,8 +54,9 @@ body {
 }
 
 /* NOT WORKING - WHYYYYYY */
-/* .score-container {
+.score-container {
   display: flex;
   justify-content: center;
   text-align: center;
-} */
+  margin-top: 20px;
+}
