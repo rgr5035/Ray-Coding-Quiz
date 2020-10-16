@@ -7,8 +7,11 @@ const header1 = document.querySelector('h1');
 const questionEl = document.getElementById('question');
 const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
-const highScoreEl = document.getElementById('high-score-buttons')
+const scoreBoxEl = document.getElementById('score-box');
+const scoreButtonEl = document.getElementById('enter-score');
 
+//Global
+var timerInterval;
 
 //NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
@@ -21,18 +24,26 @@ nextButton.addEventListener('click', () => {
     setNextQuestion();
 })
 
+
+scoreButtonEl.addEventListener('click', function(e) {
+     e.preventDefault();
+    console.log(secondsLeft);
+    
+})
+
+//NEED TO ADD LOCAL STORAGE TO SCORE AFTER WE GRAB INITIALS AND SCORE DATA
 //declaring the variable that stores in global memory the various quiz questions
 
 
 //declaring the variable of score that will increment as the user gains correct answers
 let score = 0;
 
-var secondsLeft = 10;
+var secondsLeft = 60;
 
 
 //NEED NOTES
 function startGame () {
-    console.log('started');
+    
     startButton.classList.add('hide'); //THIS DIDNT WORK
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
@@ -45,7 +56,7 @@ function startGame () {
 
 //TIMER FUNCTION
 function setTime() {
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timerEl.textContent = "Time remaining: " + secondsLeft;
     if (secondsLeft === 0) {
@@ -60,9 +71,9 @@ function timesUp () {
     timerEl.textContent = "Time's Up!!"
     startButton.textContent = "Restart";
     startButton.classList.remove('hide');
-    highScoreEl.classList.remove('hide');
     header1.classList.remove('hide');
     header1.textContent = "Try Again?";
+    scoreBoxEl.classList.remove('hide');
 }
 
 
@@ -110,12 +121,16 @@ function selectAnswer(e) {
     } else {
         startButton.textContent = "Restart";
         startButton.classList.remove('hide');
-        highScoreEl.classList.remove('hide');
         header1.classList.remove('hide');
         header1.textContent = "Try Again?";
-    } if (selectedButton.dataset = correct) {
-        score++;
+        scoreBoxEl.classList.remove('hide');
+        clearInterval(timerInterval);
     } 
+    if (selectedButton.dataset = correct) {
+        score++;
+    } else { 
+        secondsLeft-- * 10;
+    }
     showScore.textContent = "Your Score: " + score + "/10";
 }
 
@@ -127,7 +142,6 @@ function setStatusclass(element, correct) {
         element.classList.add('correct');
     } else {
         element.classList.add('wrong');
-        secondsLeft-- * 10;
     }
 }
 
