@@ -9,9 +9,15 @@ const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
 const scoreBoxEl = document.getElementById('score-box');
 const scoreButtonEl = document.getElementById('enter-score');
+const nameInput = document.querySelector('user-name-input');
+const scoreInput = document.querySelector('user-score-input');
+const nameSpan = document.querySelector('user-name');
+const scoreSpan = document.querySelector('user-score');
 
 //Global
 var timerInterval;
+var userName;
+var userScore;
 
 //NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
@@ -25,11 +31,6 @@ nextButton.addEventListener('click', () => {
 })
 
 
-scoreButtonEl.addEventListener('click', function(e) {
-     e.preventDefault();
-    console.log(secondsLeft);
-    
-})
 
 //NEED TO ADD LOCAL STORAGE TO SCORE AFTER WE GRAB INITIALS AND SCORE DATA
 //declaring the variable that stores in global memory the various quiz questions
@@ -152,6 +153,25 @@ function clearStatusClass(element) {
     element.classList.remove('wrong');
 }
 
+// create user object from submission
+
+scoreButtonEl.addEventListener('click', function() {
+    //  e.preventDefault();
+
+    var user = {
+    userName: nameInput.value.trim(),
+    userScore: scoreInput.value.trim(),
+  };
+    console.log(secondsLeft);
+    console.log(user);
+    // set new submission
+    localStorage.setItem("user", JSON.stringify(user));
+    
+    // get most recent submission
+    var lastUser = JSON.parse(localStorage.getItem("user"));
+    nameSpan.textContent = lastUser.userName;
+    scoreSpan.textContent = lastUser.userScore;
+})
 
 
 //NEED NOTES
