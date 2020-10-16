@@ -7,6 +7,7 @@ const header1 = document.querySelector('h1');
 const questionEl = document.getElementById('question');
 const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
+const scoreBoxEl = document.getElementById('score-box');
 const scoreButtonEl = document.getElementById('enter-score');
 const nameInput = document.querySelector('user-name-input');
 const scoreInput = document.querySelector('user-score-input');
@@ -44,7 +45,7 @@ var secondsLeft = 60;
 //NEED NOTES
 function startGame () {
     
-    startButton.classList.add('hide'); 
+    startButton.classList.add('hide'); //THIS DIDNT WORK
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
@@ -153,16 +154,20 @@ function clearStatusClass(element) {
 }
 
 // create user object from submission
+ 
 
-scoreButtonEl.addEventListener('click', function() {
-    //  e.preventDefault();
+ 
+  
 
-    var user = {
+
+scoreButtonEl.addEventListener('click', function(e) {
+     e.preventDefault();
+
+      var user = {
     userName: nameInput.value.trim(),
     userScore: scoreInput.value.trim(),
   };
     console.log(secondsLeft);
-    console.log(user);
     // set new submission
     localStorage.setItem("user", JSON.stringify(user));
     
