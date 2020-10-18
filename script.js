@@ -11,9 +11,8 @@ const scoreBoxEl = document.getElementById('score-box');
 const nameInput = document.getElementById('user-name-input');
 const msgDiv = document.getElementById("msg");
 const scoreButtonEl = document.getElementById('enter-score');
-const nameSpan = document.getElementById('user-name');
-const scoreSpan = document.getElementById('user-score');
-const initialScores = document.getElementById('initial-scores');
+const highscoreDisplayName = document.getElementById('user-name');
+const highscoreDisplayScore = document.getElementById('user-score');
 
 //Global declarations of variables that will be used for functions later on
 var timerInterval;
@@ -177,7 +176,7 @@ scoreButtonEl.addEventListener('click', function(e) {
     if (nameInput.value === "") {
     displayMessage("error", "Initials cannot be blank");
     }  else {
-        var userScores = JSON.parse(localStorage.getItem("userScores")) || [];
+        var userSavedScores = JSON.parse(localStorage.getItem("userSavedScores")) || [];
         var currentUser = nameInput.value.trim();
 
         var currentScore = {
@@ -185,14 +184,34 @@ scoreButtonEl.addEventListener('click', function(e) {
             score: secondsLeft,
         };
 
-    userScores.push(currentScore);
-    localStorage.setItem("userData", JSON.stringify(userScores));
-    };
- 
-})
+    userSavedScores.push(currentScore);
+    localStorage.setItem("userSavedScores", JSON.stringify(userSavedScores));
+    generateHighScores();
+    }
+ });
     
-//write code to loop over "temp" array and display each initials and socres on the page and then append to <ul>
 
+//creating loop to generate scores and have them append to the <ul>
+function generateHighScores() {
+    highscoreDisplayName.innterHTML = "";
+    highscoreDisplayScore.innerHTML = "";
+
+    var highScores = JSON.parse(localStorage.getItem("userSavedScores")) || [];
+
+    for (var i = 0; i < highScores.length; i++) {
+        var nameSpan = document.createElement("li");
+        var scoreSpan = document.createElement("li");
+        nameSpan.textContent = highScores[i].name;
+        scoreSpan.textContent = highScores[i].score;
+        highscoreDisplayName.appendChild(nameSpan);
+        highscoreDisplayScore.appendChild(scoreSpan);
+    }
+
+
+
+
+
+}
 
  
 
