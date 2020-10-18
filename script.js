@@ -9,22 +9,21 @@ const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
 const scoreBoxEl = document.getElementById('score-box');
 const nameInput = document.getElementById('user-name-input');
-const scoreInput = document.getElementById('user-score-input');
 const msgDiv = document.getElementById("msg");
 const scoreButtonEl = document.getElementById('enter-score');
 const nameSpan = document.getElementById('user-name');
 const scoreSpan = document.getElementById('user-score');
+const initialScores = document.getElementById('initial-scores');
 
 //Global declarations of variables that will be used for functions later on
 var timerInterval;
 
-var user = {
-    userName: nameInput.value.trim(),
-    userScore: scoreInput.value.trim(),
-  };
+// var user = {
+//     userName: nameInput.value.trim(),
+//     userScore: scoreInput.value.trim(),
+//   };
 
-//local storage of last user's score and initial entered to save when page reloads
-var lastUser = JSON.parse(localStorage.getItem(user.userName));
+
     
 
 //NEED NOTES 
@@ -173,31 +172,55 @@ function displayMessage(type, message) {
 
 //Stores the user's name and score in the score card and saves it to local storage
 scoreButtonEl.addEventListener('click', function(e) {
-     e.preventDefault();
-    
+    e.preventDefault();
      var user = {
-    userName: nameInput.value.trim(),
-    userScore: scoreInput.value.trim(),
-  };
+        userName: nameInput.value.trim(),
+    }
+
     if (user.userName === "") {
     displayMessage("error", "First name cannot be blank");
-  } else if (user.userScore === "") {
-    displayMessage("error", "Last name cannot be blank");
-  } else {
+    }  else {
     displayMessage("success", "Registered successfully");
 
+    var temp = JSON.parse(localStorage.getItem("userData")) || [];
     
-    // set new submission
+    };
+ 
+    temp.push(user);
+    localStorage.setItem("userData", JSON.stringify(temp));
+//write code to loop over "temp" array and display each initials and socres on the page and then append to <ul>
 
 
-    localStorage.setItem(user.userName, JSON.stringify(user));
+ })
+
+
+//      e.preventDefault();
     
-    // get most recent submission
-    var lastUser = JSON.parse(localStorage.getItem(user.userName));
-    nameSpan.textContent = lastUser.userName;
-    scoreSpan.textContent = lastUser.userScore;
-  }
-})
+//      var user = {
+//     userName: nameInput.value.trim(),
+//     userScore: scoreInput.value.trim(),
+//   };
+//     if (user.userName === "") {
+//     displayMessage("error", "First name cannot be blank");
+//   } else if (user.userScore === "") {
+//     displayMessage("error", "Last name cannot be blank");
+//   } else {
+//     displayMessage("success", "Registered successfully");
+
+    
+//     // set new submission
+
+
+//     localStorage.setItem(user.userName, JSON.stringify(user));
+    
+//     // get most recent submission
+//     var lastUser = JSON.parse(localStorage.getItem(user.userName));
+//     nameSpan.textContent = lastUser.userName;
+//     scoreSpan.textContent = lastUser.userScore;
+//   }
+
+
+
 
 
 //Declares the variable arrays of the questions to be randomized in above functions 

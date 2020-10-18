@@ -40,22 +40,24 @@
         <h2>Enter Your Score!</h2>
         <form>
             <div class="input-group">
-                <label for="user-name-input">Name</label>
-                <input type="text" name="user-name-input" id="user-name-input" placeholder="Name" />
-            </div>
-            <div class="input-group">
-                <label for="user-score-input">Score</label>
-                <input type="text" name="user-score-input" id="user-score-input" placeholder="Score" />
+                <label for="user-name-input">Initials</label>
+                <input type="text" id="user-name-input" placeholder="Initials" />
             </div>
             <div id="msg"></div>
-            <button id="enter-score">Enter Score</button>
+            <button id="enter-score">Submit</button>
         </form>
     </div>
 
     <div class="score-card" id="high-score-card">
-        <h2>Your Last Score</h2>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Score:</strong> <span id="user-score"></span></p>
+        <h2>High Scores</h2>
+        <div>
+            <ul id="initial-scores">
+                
+            </ul>
+
+        </div>
+        <!-- <p><strong>Name:</strong> <span id="user-name"></span></p>
+        <p><strong>Score:</strong> <span id="user-score"></span></p> -->
     </div>
 </div>
 
