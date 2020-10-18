@@ -8,16 +8,18 @@ const questionEl = document.getElementById('question');
 const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
 const scoreBoxEl = document.getElementById('score-box');
+const nameInput = document.getElementById('user-name-input');
+const scoreInput = document.getElementById('user-score-input');
+const msgDiv = document.getElementById("msg");
 const scoreButtonEl = document.getElementById('enter-score');
-const nameInput = document.querySelector('user-name-input');
-const scoreInput = document.querySelector('user-score-input');
-const nameSpan = document.querySelector('user-name');
-const scoreSpan = document.querySelector('user-score');
+const nameSpan = document.getElementById('user-name');
+const scoreSpan = document.getElementById('user-score');
 
 //Global
 var timerInterval;
-var userName;
-var userScore;
+// var user;
+// var userName;
+// var userScore;
 
 //NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
@@ -39,6 +41,7 @@ nextButton.addEventListener('click', () => {
 //declaring the variable of score that will increment as the user gains correct answers
 let score = 0;
 
+//declaring variable of secondsLeft to notate the total seconds remaining in the game, starting at 60
 var secondsLeft = 60;
 
 
@@ -154,31 +157,42 @@ function clearStatusClass(element) {
 }
 
 // create user object from submission
- 
 
- 
-  
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute("class", type);
+}
 
-
+//Stores the user's name and score in the score card and saves it to local storage
 scoreButtonEl.addEventListener('click', function(e) {
      e.preventDefault();
-
-      var user = {
+    
+     var user = {
     userName: nameInput.value.trim(),
     userScore: scoreInput.value.trim(),
   };
-    console.log(secondsLeft);
+    if (user.userName === "") {
+    displayMessage("error", "First name cannot be blank");
+  } else if (user.userScore === "") {
+    displayMessage("error", "Last name cannot be blank");
+  } else {
+    displayMessage("success", "Registered successfully");
+
+    
     // set new submission
-    localStorage.setItem("user", JSON.stringify(user));
+
+
+    localStorage.setItem(user.userName, JSON.stringify(user));
     
     // get most recent submission
-    var lastUser = JSON.parse(localStorage.getItem("user"));
+    var lastUser = JSON.parse(localStorage.getItem(user.userName));
     nameSpan.textContent = lastUser.userName;
     scoreSpan.textContent = lastUser.userScore;
+  }
 })
 
 
-//NEED NOTES
+//Declares the variable arrays of the questions to be randomized in above functions 
 const questions = [
     {
         question: "What is the HTML tag under which one can write the JavaScript code?",
