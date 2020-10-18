@@ -15,11 +15,17 @@ const scoreButtonEl = document.getElementById('enter-score');
 const nameSpan = document.getElementById('user-name');
 const scoreSpan = document.getElementById('user-score');
 
-//Global
+//Global declarations of variables that will be used for functions later on
 var timerInterval;
-// var user;
-// var userName;
-// var userScore;
+
+var user = {
+    userName: nameInput.value.trim(),
+    userScore: scoreInput.value.trim(),
+  };
+
+//local storage of last user's score and initial entered to save when page reloads
+var lastUser = JSON.parse(localStorage.getItem(user.userName));
+    
 
 //NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
