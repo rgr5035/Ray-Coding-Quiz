@@ -173,51 +173,28 @@ function displayMessage(type, message) {
 //Stores the user's name and score in the score card and saves it to local storage
 scoreButtonEl.addEventListener('click', function(e) {
     e.preventDefault();
-     var user = {
-        userName: nameInput.value.trim(),
-    }
-
-    if (user.userName === "") {
-    displayMessage("error", "First name cannot be blank");
+     
+    if (nameInput.value === "") {
+    displayMessage("error", "Initials cannot be blank");
     }  else {
-    displayMessage("success", "Registered successfully");
+        var userScores = JSON.parse(localStorage.getItem("userScores")) || [];
+        var currentUser = nameInput.value.trim();
 
-    var temp = JSON.parse(localStorage.getItem("userData")) || [];
-    
+        var currentScore = {
+            name: currentUser,
+            score: secondsLeft,
+        };
+
+    userScores.push(currentScore);
+    localStorage.setItem("userData", JSON.stringify(userScores));
     };
  
-    temp.push(user);
-    localStorage.setItem("userData", JSON.stringify(temp));
+})
+    
 //write code to loop over "temp" array and display each initials and socres on the page and then append to <ul>
 
 
- })
-
-
-//      e.preventDefault();
-    
-//      var user = {
-//     userName: nameInput.value.trim(),
-//     userScore: scoreInput.value.trim(),
-//   };
-//     if (user.userName === "") {
-//     displayMessage("error", "First name cannot be blank");
-//   } else if (user.userScore === "") {
-//     displayMessage("error", "Last name cannot be blank");
-//   } else {
-//     displayMessage("success", "Registered successfully");
-
-    
-//     // set new submission
-
-
-//     localStorage.setItem(user.userName, JSON.stringify(user));
-    
-//     // get most recent submission
-//     var lastUser = JSON.parse(localStorage.getItem(user.userName));
-//     nameSpan.textContent = lastUser.userName;
-//     scoreSpan.textContent = lastUser.userScore;
-//   }
+ 
 
 
 
