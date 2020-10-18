@@ -42,18 +42,20 @@ nextButton.addEventListener('click', () => {
 let score = 0;
 
 //declaring variable of secondsLeft to notate the total seconds remaining in the game, starting at 60
-var secondsLeft = 60;
+var secondsLeft = 120;
 
 
 //NEED NOTES
 function startGame () {
     
-    startButton.classList.add('hide'); //THIS DIDNT WORK
+    startButton.classList.add('hide'); 
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerEl.classList.remove('hide');
     header1.classList.add('hide');
+    scoreBoxEl.classList.add('hide');
     score = 0;
+    secondsLeft = 120;
     setNextQuestion();
     setTime();
 }
@@ -133,7 +135,7 @@ function selectAnswer(e) {
     if (selectedButton.dataset = correct) {
         score++;
     } else { 
-        secondsLeft-- * 10;
+        secondsLeft -= 5;
     }
     showScore.textContent = "Your Score: " + score + "/10";
 }
