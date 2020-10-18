@@ -205,19 +205,9 @@ function generateHighScores() {
         scoreSpan.textContent = highScores[i].score;
         highscoreDisplayName.appendChild(nameSpan);
         highscoreDisplayScore.appendChild(scoreSpan);
-    }
+    
 
-
-
-
-
-}
-
- 
-
-
-
-
+}};
 
 //Declares the variable arrays of the questions to be randomized in above functions 
 const questions = [
