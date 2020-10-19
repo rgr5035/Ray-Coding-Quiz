@@ -9,6 +9,7 @@ const answerButtonsEl = document.getElementById('answer-buttons');
 const showScore = document.getElementById('score');
 const scoreBoxEl = document.getElementById('score-box');
 const nameInput = document.getElementById('user-name-input');
+const scoreCardEl = document.getElementById('high-score-card');
 const msgDiv = document.getElementById("msg");
 const scoreButtonEl = document.getElementById('enter-score');
 const highscoreDisplayName = document.getElementById('user-name');
@@ -17,13 +18,6 @@ const highscoreDisplayScore = document.getElementById('user-score');
 //Global declarations of variables that will be used for functions later on
 var timerInterval;
 
-// var user = {
-//     userName: nameInput.value.trim(),
-//     userScore: scoreInput.value.trim(),
-//   };
-
-
-    
 
 //NEED NOTES 
 let shuffledQuestions, currentQuestionIndex
@@ -188,6 +182,7 @@ scoreButtonEl.addEventListener('click', function(e) {
     localStorage.setItem("userSavedScores", JSON.stringify(userSavedScores));
     generateHighScores();
     }
+    scoreCardEl.classList.remove('hide');
  });
     
 
