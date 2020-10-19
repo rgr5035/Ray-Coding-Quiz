@@ -3,39 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links to external Bootsrap found below -->
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    
+    <!-- Link to external CSS stylsheet found below-->
     <link rel="stylesheet" href="style.css">
     <title>Coding Quiz</title>
 </head>
+
 <body>
+
+<!--Main container area which holds our questions and possible answers to choose from-->    
 <main class="container">
-        <h1>Let's Take a Quiz!</h1>
+    <h1>Let's Take a Quiz!</h1>
+
+        <!--Timer with seconds remaining to be notated here-->
         <h2 id=timer></h2>
-  <div id="questions-container" class="hide">
-      <div id="question">Question</div>
-      <div id="answer-buttons" class="button-rows">
-            <button type="button" class="btn" class="btn btn-dark">Answer 1</button>
-            <button type="button" class="btn" class="btn btn-dark">Answer 2</button>
-            <button type="button" class="btn" class="btn btn-dark">Answer 3</button>
-            <button type="button" class="btn" class="btn btn-dark">Answer 4</button>
+            <div id="questions-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="button-rows">
+                    <button type="button" class="btn" class="btn btn-dark">Answer 1</button>
+                    <button type="button" class="btn" class="btn btn-dark">Answer 2</button>
+                    <button type="button" class="btn" class="btn btn-dark">Answer 3</button>
+                    <button type="button" class="btn" class="btn btn-dark">Answer 4</button>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
-   <div class="controls">
-    <button type="button" id="start-btn" class="start-btn btn btn-dark">Start</button>
-    <button type="button" id="next-btn" class="start-btn btn btn-dark hide">Next</button>
+
+    <!--'Start' and 'Next' buttons found below-->    
+    <div class="controls">
+        <button type="button" id="start-btn" class="start-btn btn btn-dark">Start</button>
+        <button type="button" id="next-btn" class="start-btn btn btn-dark hide">Next</button>
    </div>
-</div>
-</div>
+</main>
 
-<div class="score-container">
+<!-- Score keeper container found below (this is added as extra, the actual score pulled from local storage is the remaining seconds on the timer-->
+<section class="score-container">
     <span id="score"></span>
-</div>
+</section>
 
-<div class="clearfix hide" id="score-box">
+<!--Section to input the user's initial to generate score from local storage found below-->
+<section class="clearfix hide" id="score-box">
     <div class="name-card">
         <h2>Enter Your Score!</h2>
         <form>
@@ -44,32 +56,27 @@
                 <input type="text" class="user-name-input" id="user-name-input" placeholder="Initials" />
             </div>
             <div id="msg"></div>
-            <button id="enter-score" class="submit-btn btn btn-dark"  >Submit</button>
-           
+            <button id="enter-score" class="submit-btn btn btn-dark">Submit</button>
         </form>
     </div>
 
-
-<div class="score-card hide" id="high-score-card">
-    <h2 class="score-header">High Scores</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <ul id="user-name">
-
-                </ul>
+    <!--Card that contains the hidden high scores found below, will show once user inputs initials-->
+    <div class="score-card hide" id="high-score-card">
+        <h2 class="score-header">High Scores</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul id="user-name"></ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul id="user-score"></ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <ul id="user-score">
-
-                </ul>
-            </div>
-        </div>
     </div>
-</main>
+</section>
 
-</div>
-
-    <script src="script.js"></script>
+<!--External link to JS found below-->
+<script src="script.js"></script>
 </body>
 </html>

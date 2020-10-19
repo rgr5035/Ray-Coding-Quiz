@@ -14,21 +14,7 @@ const msgDiv = document.getElementById("msg");
 const scoreButtonEl = document.getElementById('enter-score');
 const highscoreDisplayName = document.getElementById('user-name');
 const highscoreDisplayScore = document.getElementById('user-score');
-
-//Global declarations of variables that will be used for functions later on
 var timerInterval;
-
-
-//declares variables of the shuffled questions and the index of the current question notated in global memory for use later on
-let shuffledQuestions, currentQuestionIndex
-
-
-//event handlers for the 'start' and 'next' buttons to run various functions found within the event handlers
-startButton.addEventListener('click', startGame);
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
-    setNextQuestion();
-})
 
 //declaring the variable of score that will increment as the user gains correct answers, starting at 0
 let score = 0;
@@ -36,6 +22,15 @@ let score = 0;
 //declaring variable of secondsLeft to notate the total seconds remaining in the game, starting at 120
 var secondsLeft = 120;
 
+//declares variables of the shuffled questions and the index of the current question notated in global memory for use later on
+let shuffledQuestions, currentQuestionIndex
+
+//event handlers for the 'start' and 'next' buttons to run various functions found within the event handlers
+startButton.addEventListener('click', startGame);
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion();
+})
 
 //runs the following code block when the 'start' button is pressed, and runs various functions found within code block
 function startGame () {
@@ -79,7 +74,6 @@ function timesUp () {
     scoreBoxEl.classList.remove('hide');
 }
 
-
 //runs code block of following functions to shuffle through the next question in the questions array
 function setNextQuestion (){
     resetState()
@@ -109,7 +103,6 @@ function resetState() {
     }
 }
 
-
 //runs code block when an answer button is selected, following function will occur
 function selectAnswer(e) {
     //pulls from the data set of questions to determine whether or not the answer selected has a boolean value of true
@@ -132,7 +125,7 @@ function selectAnswer(e) {
         clearInterval(timerInterval);
     } 
 
-    //if selected answer is correct, increment score
+    //if selected answer is correct, increment score of correct questions answered (extra added)
     if (selectedButton.dataset = correct) {
         score++;
 
@@ -142,7 +135,6 @@ function selectAnswer(e) {
     }
     showScore.textContent = "Your Score: " + score + "/10";
 }
-
 
 //adds styling to answer buttons to notate correct and wrong answers based on a color change
 function setStatusclass(element, correct) {
@@ -154,13 +146,11 @@ function setStatusclass(element, correct) {
     }
 }
 
-
 //clears the color change on buttons when next button is pushed to generate next question
 function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
-
 
 //notates user to enter correct values if initial input is incorrect
 function displayMessage(type, message) {
@@ -191,7 +181,6 @@ scoreButtonEl.addEventListener('click', function(e) {
     scoreCardEl.classList.remove('hide');
  });
     
-
 //creating loop to generate scores and have them append to the <ul>
 function generateHighScores() {
     highscoreDisplayName.innterHTML = "";
@@ -206,8 +195,6 @@ function generateHighScores() {
         scoreSpan.textContent = highScores[i].score;
         highscoreDisplayName.appendChild(nameSpan);
         highscoreDisplayScore.appendChild(scoreSpan);
-    
-
 }};
 
 //Declares the variable arrays of the questions to be randomized in above functions 
