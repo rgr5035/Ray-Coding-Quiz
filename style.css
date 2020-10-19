@@ -8,8 +8,8 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  margin-top: 30px;
+.score-header {
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -47,22 +47,23 @@ h2 {
   align-items: center;
 }
 
-/*NOT WORKING - WHY 
-.score-card {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 .hide {
   display: none;
 }
 
-/* NOT WORKING - WHYYYYYY */
 .score-container {
   display: flex;
   justify-content: center;
   text-align: center;
   margin-top: 20px;
+}
+
+.name-card {
+  margin: auto;
+  overflow: auto;
+  align-items: center;
+}
+
+.input-group {
+  display: inline;
 }

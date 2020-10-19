@@ -1,4 +1,4 @@
-//VARIABLE DECLARATION
+//VARIABLE DECLARATIONS TO STORE IN GLOBAL MEMORY
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const timerEl = document.getElementById('timer');
@@ -19,36 +19,35 @@ const highscoreDisplayScore = document.getElementById('user-score');
 var timerInterval;
 
 
-//NEED NOTES 
+//declares variables of the shuffled questions and the index of the current question notated in global memory for use later on
 let shuffledQuestions, currentQuestionIndex
 
 
-//NEED NOTES
+//event handlers for the 'start' and 'next' buttons to run various functions found within the event handlers
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion();
 })
 
-
-
-//NEED TO ADD LOCAL STORAGE TO SCORE AFTER WE GRAB INITIALS AND SCORE DATA
-//declaring the variable that stores in global memory the various quiz questions
-
-
-//declaring the variable of score that will increment as the user gains correct answers
+//declaring the variable of score that will increment as the user gains correct answers, starting at 0
 let score = 0;
 
-//declaring variable of secondsLeft to notate the total seconds remaining in the game, starting at 60
+//declaring variable of secondsLeft to notate the total seconds remaining in the game, starting at 120
 var secondsLeft = 120;
 
 
-//NEED NOTES
+//runs the following code block when the 'start' button is pressed, and runs various functions found within code block
 function startGame () {
     
+    //hides the 'start' button for duration of game
     startButton.classList.add('hide'); 
+
+    //shuffles through the questions array with a math.random method
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
+
+    //removes/adds 'hide' class to various elements
     questionContainerEl.classList.remove('hide');
     header1.classList.add('hide');
     scoreBoxEl.classList.add('hide');
@@ -58,7 +57,7 @@ function startGame () {
     setTime();
 }
 
-//TIMER FUNCTION
+//runs the following code block to begin the timer on the page, and stops the timer when the interval hits 0, and runs functions within code block
 function setTime() {
   timerInterval = setInterval(function () {
     secondsLeft--;
@@ -70,7 +69,7 @@ function setTime() {
   }, 1000);
 }
 
-//NEED NOTES
+//runs the following code block to notate when the timer hits 0, notates a new header text, along with rassigning the text of the start button to 'restart'
 function timesUp () {
     timerEl.textContent = "Time's Up!!"
     startButton.textContent = "Restart";
@@ -81,13 +80,13 @@ function timesUp () {
 }
 
 
-//NEED NOTES
+//runs code block of following functions to shuffle through the next question in the questions array
 function setNextQuestion (){
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
-//NEED NOTES
+//runs the following code block to remove the hide class to the questions and answers to be chosen by user
 function showQuestion(question) {
     questionEl.textContent = question.question
     question.answers.forEach(answer => {
@@ -111,8 +110,9 @@ function resetState() {
 }
 
 
-//NEED NOTES
+//runs code block when an answer button is selected, following function will occur
 function selectAnswer(e) {
+    //pulls from the data set of questions to determine whether or not the answer selected has a boolean value of true
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusclass(document.body, correct);
@@ -120,6 +120,7 @@ function selectAnswer(e) {
         setStatusclass(button, button.dataset.correct);
     })
 
+    //will continue to randomize the questions in the below array until entire array has been exhausted 
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
@@ -139,7 +140,7 @@ function selectAnswer(e) {
 }
 
 
-//CAN ADD STYLING TO CSS TO GENERATE COLORS IN BUTTONS IF CORRECT OR WRONG, CONSIDER ADDING TO CSS TO GENERATE
+//adds styling to answer buttons to notate correct and wrong answers based on a color change
 function setStatusclass(element, correct) {
     clearStatusClass(element);
     if (correct) {
@@ -150,14 +151,14 @@ function setStatusclass(element, correct) {
 }
 
 
-//NEED NOTES
+//clears the color change on buttons when next button is pushed to generate next question
 function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
 
-// create user object from submission
 
+//notates user to enter correct values if initial input is incorrect
 function displayMessage(type, message) {
   msgDiv.textContent = message;
   msgDiv.setAttribute("class", type);
@@ -169,6 +170,7 @@ scoreButtonEl.addEventListener('click', function(e) {
      
     if (nameInput.value === "") {
     displayMessage("error", "Initials cannot be blank");
+    return false;
     }  else {
         var userSavedScores = JSON.parse(localStorage.getItem("userSavedScores")) || [];
         var currentUser = nameInput.value.trim();
