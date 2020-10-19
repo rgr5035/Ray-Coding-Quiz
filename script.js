@@ -131,8 +131,12 @@ function selectAnswer(e) {
         scoreBoxEl.classList.remove('hide');
         clearInterval(timerInterval);
     } 
+
+    //if selected answer is correct, increment score
     if (selectedButton.dataset = correct) {
         score++;
+
+    //if selected answer is not correct, decrements time by 5 seconds    
     } else { 
         secondsLeft -= 5;
     }
