@@ -188,13 +188,22 @@ function generateHighScores() {
 
     var highScores = JSON.parse(localStorage.getItem("userSavedScores")) || [];
 
+     var unoderedList = document.getElementById("user-name");
+  while (unoderedList.firstChild) {
+    unoderedList.removeChild(unoderedList.firstChild);
+    }
+
     for (var i = 0; i < highScores.length; i++) {
+
+       console.log(highScores.length);
+        
+      
         var nameSpan = document.createElement("li");
         var scoreSpan = document.createElement("li");
-        nameSpan.textContent = highScores[i].name;
-        scoreSpan.textContent = highScores[i].score;
+        nameSpan.textContent = `${highScores[i].name} - ${highScores[i].score}`;
+        // scoreSpan.textContent = highScores[i].score;
         highscoreDisplayName.appendChild(nameSpan);
-        highscoreDisplayScore.appendChild(scoreSpan);
+        // highscoreDisplayScore.appendChild(scoreSpan);
 }};
 
 //Declares the variable arrays of the questions to be randomized in above functions 
