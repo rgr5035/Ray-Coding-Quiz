@@ -16,7 +16,7 @@ This application is comprised of a timed, multiple choice quiz about beginner HT
 
 ## Installation
 
-Please follow the following live site link to view this application:
+Please follow the following live site link to view this application: https://rgr5035.github.io/Ray-Coding-Quiz/
 
 ## Usage
 
